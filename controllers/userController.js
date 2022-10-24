@@ -18,7 +18,7 @@ const userController = {
     getAllUser : async(req,res) =>{
         res.setHeader('Access-Control-Allow-Origin', '*');
         try{
-            const user = User.find();
+            const user = await User.find();
             res.status(200).json(user);
         }
         catch(err){
