@@ -4,6 +4,7 @@ const {User } = require("../models/model");
 const userController = {
     //ADD USER
     addUser : async (req, res) =>{
+        res.setHeader('Access-Control-Allow-Origin', '*');
         try{
             const user = new User(req.body);
             const saveUser = await user.save();
@@ -11,6 +12,17 @@ const userController = {
         }
         catch(err){
             res.status(500).json(err)
+        }
+    },
+    // GET ALL USER
+    getAllUser : async(req,res) =>{
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        try{
+            const user = User.find();
+            res.status(200).json(user);
+        }
+        catch(err){
+            res.status(500).json(err);
         }
     }
 }

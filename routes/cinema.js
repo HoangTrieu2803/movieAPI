@@ -5,4 +5,6 @@ const cinemaController = require("../controllers/cinemaController");
 router.post("/" , cinemaController.addCinema);
 //GET A CINEMA
 router.get("/:id", cinemaController.getACinema);
+// GET ALL CINEMA
+router.get("/",cinemaController.getAllCinema);
 module.exports = router;
