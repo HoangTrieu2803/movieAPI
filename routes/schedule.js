@@ -6,4 +6,8 @@ router.post("/",scheduleController.addSchedule);
 router.get("/:id", scheduleController.getASchedule);
 // GET ALL SCHEDULE
 router.get("/",scheduleController.getAllSchedule)
+//UPDATE SCHEDULE
+router.put("/:id", scheduleController.updateSchedule);
+//DELETE SCHEDULE
+router.delete("/:id",scheduleController.deleteSchedule);
 module.exports = router;

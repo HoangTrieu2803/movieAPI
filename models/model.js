@@ -21,7 +21,13 @@ const movieShema = new mongoose.Schema({
   },
   img: {
     type: String,
-  }
+  },
+  schedule:[
+    {
+      type:mongoose.Schema.Types.ObjectId,
+      ref:"Schedule"
+    }
+  ]
 });
 //SCHEDULE
 const scheduleChema = new mongoose.Schema({

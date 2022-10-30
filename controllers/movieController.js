@@ -28,7 +28,7 @@ const movieController = {
     getAMovie: async(req,res)=>{
         res.setHeader('Access-Control-Allow-Origin', '*');
         try{
-            const movie = await Movie.findById(req.params.id);
+            const movie = await Movie.findById(req.params.id).populate("schedule");
             res.status(200).json(movie)
         }catch(err){
             res.status(500).json(err);
@@ -37,14 +37,25 @@ const movieController = {
     //DELETE MOVIE
     deleteMovie: async(req,res)=>{
         res.setHeader('Access-Control-Allow-Origin', '*');
-
         try{
-            await Schedule.findByIdAndRemove({_id: req.body.schedule})
+            await Schedule.updateMany({movie: req.params.id},{movie:null})
             await Movie.findByIdAndDelete(req.params.id)
-            res.status(200).json("success")
+            res.status(200).json("delete successfully")
         }
         catch(err){
             res.status(500).json(err);
+        }
+    },
+    //UPDATE MOVIE
+    updateMovie : async(req , res)=>{
+        res.setHeader('Access-Control-Allow-Origin', '*');
+        try{
+            const movie = await Movie.findById(req.params.id);
+            await movie.updateOne({$set : req.body});
+            res.status("200").json("Update successfully");
+        }
+        catch(err){
+            res.status("500").json(err);
         }
     }
 }
