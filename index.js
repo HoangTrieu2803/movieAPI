@@ -3,6 +3,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 var bodyParseer = require("body-parser");
+const cookieParser = require("cookie-parser"); 
 // const morgan = require("morgan");
 // const dotenv = require("dotenv");
 const movieRoute = require("./routes/movie");
@@ -11,6 +12,8 @@ const roomRoute = require("./routes/room")
 const cinemaRoute = require("./routes/cinema")
 const seatRoute = require("./routes/seat")
 const userRoute = require("./routes/user")
+const createError = require("http-errors")
+const {verifyAccessToken} = require("./validation/jwt")
 // dotenv.config();
 //CONNECT DB
 mongoose.connect("mongodb+srv://trieu123vn:trieu123@cluster0.w1tifv5.mongodb.net/Movie?retryWrites=true&w=majority")
@@ -25,7 +28,7 @@ console.log("Somthing went wrong!")
 app.use(bodyParseer.json({limit:"50mb"}))
 // app.use(cors());
 // app.use(morgan("common"));
-
+app.use(cookieParser());
 //ROUTE MOVIE
 app.use("/v1/movie",movieRoute);
 //ROUTE SCHEDULE

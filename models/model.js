@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const bcrpyt = require("bcrypt")
 //MOVIE
 const movieShema = new mongoose.Schema({
   name: {
@@ -22,6 +23,9 @@ const movieShema = new mongoose.Schema({
   img: {
     type: String,
   },
+  trailer:{
+    type:String
+  },
   schedule:[
     {
       type:mongoose.Schema.Types.ObjectId,
@@ -36,11 +40,11 @@ const scheduleChema = new mongoose.Schema({
     require: true,
   },
   time_start: {
-    type: [String],
+    type: String,
     require: true,
   },
   time_end: {
-    type: [String],
+    type: String,
     require: true,
   },
   movie: {
@@ -113,22 +117,41 @@ const bookingSchema = new mongoose.Schema({
 })
 //USER
 const userSchema = new mongoose.Schema({
-  user_name:{
-    type:String,
-  },
   email:{
     type:String,
+    require:true,
+    lowercase:true,
+    unique:true,
   },
   password:{
     type:String,
+    require:true,
   },
-  age:{
-    type:String,
-  },
-  user_address:{
-    type:String,
+  admin:{
+    type:Boolean,
+    default:false,
+  }
+},{timestamps:true}
+)
+userSchema.pre('save',async function(next){
+  try{
+    const salt = await bcrpyt.genSalt(10);
+    const hashPassword = await bcrpyt.hash(this.password , salt)
+    this.password = hashPassword
+    next()
+  }
+  catch(err){
+    next(err)
   }
 })
+userSchema.methods.isValidPassword = async function(password){
+  try{
+    return await bcrpyt.compare(password, this.password)
+  }
+  catch(err){
+    throw err
+  }
+}
 let Movie = mongoose.model("Movie", movieShema);
 let Schedule = mongoose.model("Schedule", scheduleChema);
 let Room = mongoose.model("Room", roomSchema);

@@ -1,0 +1,9 @@
+GET http://localhost:8000
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpYXQiOjE2Njc3MzkzMjYsImV4cCI6MTY2NzczOTM0MSwiYXVkIjoiNjM2NzlmNzI2YzgzYjJmMDAwOTI1OGU3IiwiaXNzIjoibW92aWVBUEkuY29tIn0.tWBE7IH4YsCwWyX9peuRL3M0cAg8TEXPwta7G9YlU7E
+
+POST http://localhost:8000/v1/user/login
+Content-Type: application/json
+{
+    "email" :"TRIEU1234@gmail.com",
+    "password" : "Trieuvn123"
+}
