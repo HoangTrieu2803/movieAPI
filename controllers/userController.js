@@ -53,6 +53,7 @@ const userController = {
     //LOGIN
     loginUser : async(req, res) =>{
         res.setHeader('Access-Control-Allow-Origin', '*');
+        res.setHeader(  'Access-Control-Allow-Methods','GET,PUT,POST,DELETE,PATCH,OPTIONS')
         try{
             const user = await User.findOne({email: req.body.email});
             if(!user){
