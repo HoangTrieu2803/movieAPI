@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const movieController = require("../controllers/movieController")
-
+const middlewareController = require("../controllers/middlewareController");
 //ADD MOVIE
 router.post("/", movieController.addMovie);
 //GET ALL MOVIE

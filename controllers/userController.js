@@ -36,7 +36,7 @@ const userController = {
                 admin:user.admin,
             },
             secret,
-            {expiresIn: "30s"}
+            {expiresIn: "365d"}
             );
     },
     signRefreshToken : (user) =>{

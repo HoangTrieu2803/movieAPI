@@ -1,5 +1,5 @@
 const express = require("express");
-// const cors = require("cors");
+const cors = require("cors");
 const app = express();
 const mongoose = require("mongoose");
 var bodyParseer = require("body-parser");
@@ -15,6 +15,8 @@ const userRoute = require("./routes/user")
 const createError = require("http-errors")
 const {verifyAccessToken} = require("./validation/jwt")
 // dotenv.config();
+
+app.use(cors({origin:"*"}));
 //CONNECT DB
 mongoose.connect("mongodb+srv://trieu123vn:trieu123@cluster0.w1tifv5.mongodb.net/Movie?retryWrites=true&w=majority")
 .then(()=>{

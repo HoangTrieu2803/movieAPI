@@ -11,7 +11,7 @@ router.get("/",middlewareController.verifyToken,userController.getAllUser);
 //LOGIN
 router.post("/login",userController.loginUser);
 //DELETE
-router.delete("/delUser/:id",userController.deleteUser);
+router.delete("/delUser/:id",middlewareController.verifyAdminToken,userController.deleteUser);
 
 //REFRESH
 router.post("/refresh",userController.refreshToken)

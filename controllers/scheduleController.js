@@ -20,7 +20,7 @@ const scheduleController = {
     getASchedule : async(req,res)=>{
         res.setHeader('Access-Control-Allow-Origin', '*');
         try{
-        const schedule = await Schedule.findById(req.params.id).populate("movie","room")
+        const schedule = await Schedule.findById(req.params.id).populate("room")
         res.status(200).json(schedule);
         }catch(err){
             res.status(500).json(err);
