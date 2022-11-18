@@ -22,7 +22,7 @@ const roomController = {
     getARoom: async(req,res) =>{
         res.setHeader('Access-Control-Allow-Origin', '*');
         try{
-            const room = await Room.findById(req.params.id).populate("schedule")
+            const room = await Room.findById(req.params.id).populate("cinema")
             res.status(200).json(room);
         }
         catch(err){
