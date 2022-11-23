@@ -53,8 +53,13 @@ const scheduleChema = new mongoose.Schema({
   },
   room:{
     type:mongoose.Schema.Types.ObjectId,
-    ref:"Room"
-  }
+    ref:"Room",
+    cinema:{
+      type:mongoose.Schema.Types.ObjectId,
+      ref:"Cinema"
+    }
+  },
+  
 });
 //ROOM
 const roomSchema = new mongoose.Schema({
@@ -77,7 +82,11 @@ const cinemaSchema = new mongoose.Schema({
   room:[
     {
     type:mongoose.Schema.Types.ObjectId,
-    ref:"Room"
+    ref:"Room",
+      schedule :[{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:"Schedule"
+      }]
     }
   ],
 })

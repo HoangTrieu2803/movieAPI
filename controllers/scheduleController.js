@@ -1,5 +1,7 @@
+
 const  {json}  = require("body-parser");
-const {Movie,Schedule,Room} = require("../models/model");
+const { model } = require("mongoose");
+const {Movie,Schedule,Room,Cinema} = require("../models/model");
 const scheduleController = {
     //ADD SCHEDULE
     addSchedule: async (req,res)=>{
@@ -29,8 +31,12 @@ const scheduleController = {
     //GET ALL SCHEDULE
     getAllSchedule : async(req,res)=>{
         res.setHeader('Access-Control-Allow-Origin', '*');
-        try{
-            const schedule = await Schedule.find();
+        try{        
+            const schedule = await Schedule.find().populate(
+                {path:"room",
+                populate:{path : "cinema"}
+            }
+            )
             res.status(200).json(schedule);
         }
         catch(err){
