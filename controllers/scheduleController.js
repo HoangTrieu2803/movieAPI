@@ -12,7 +12,11 @@ const scheduleController = {
         if(req.body.movie){
             const movie = Movie.find({_id: req.body.movie})
             await movie.updateOne({$push: {schedule: saveSchedule._id}})
-        } 
+        }
+        if(req.body.room){
+            const room = Room.find({_id: req.body.room})
+            await room.updateOne({$push:{schedule: saveSchedule._id}})
+        }
         res.status(200).json(saveSchedule)  
        }catch(err){
         res.status(500).json(err);

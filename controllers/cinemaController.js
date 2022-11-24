@@ -31,7 +31,11 @@ const cinemaController = {
     getAllCinema: async(req,res)=>{
         res.setHeader('Access-Control-Allow-Origin', '*');
         try{
-            const cinema = await Cinema.find();
+            const cinema = await Cinema.find().populate(
+                {path:"room",
+                populate:{path : "schedule"}
+            }
+            );
             res.status(200).json(cinema);
         }catch(err){
             res.status(500).json(err);

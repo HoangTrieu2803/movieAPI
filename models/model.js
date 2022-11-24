@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const bcrpyt = require("bcrypt");
 const string = require("@hapi/joi/lib/types/string");
+const { type } = require("@hapi/joi/lib/extend");
 //MOVIE
 const movieShema = new mongoose.Schema({
   name: {
@@ -71,6 +72,10 @@ const roomSchema = new mongoose.Schema({
   name:{
     type:String
   },
+  schedule:[
+    {type:mongoose.Schema.Types.ObjectId,
+    ref:"Schedule"}
+  ]
 })
 //CINEMA
 const cinemaSchema = new mongoose.Schema({
@@ -84,10 +89,6 @@ const cinemaSchema = new mongoose.Schema({
     {
     type:mongoose.Schema.Types.ObjectId,
     ref:"Room",
-      schedule :[{
-        type:mongoose.Schema.Types.ObjectId,
-        ref:"Schedule"
-      }]
     }
   ],
   img:{
