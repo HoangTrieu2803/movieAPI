@@ -67,6 +67,10 @@ const scheduleController = {
             {schedule: req.params.id},
             {$pull :{schedule: req.params.id}}
             );
+            await Room.updateMany(
+            {schedule: req.params.id},
+            {$pull :{schedule: req.params.id}}
+            )
             await Schedule.findById(req.params.id)
             res.status(200).json("delete successfully")
         }
