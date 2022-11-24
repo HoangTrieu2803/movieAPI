@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
-const bcrpyt = require("bcrypt")
+const bcrpyt = require("bcrypt");
+const string = require("@hapi/joi/lib/types/string");
 //MOVIE
 const movieShema = new mongoose.Schema({
   name: {
@@ -89,6 +90,9 @@ const cinemaSchema = new mongoose.Schema({
       }]
     }
   ],
+  img:{
+    type:String
+  }
 })
 //SEAT
 const seatSchema = new mongoose.Schema({

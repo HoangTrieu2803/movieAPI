@@ -15,8 +15,12 @@ const userRoute = require("./routes/user")
 const createError = require("http-errors")
 const {verifyAccessToken} = require("./validation/jwt")
 // dotenv.config();
+const corsOption ={
+    origin:'*',
+    credentials : true,
+    optionSuccessStatus:200
+}
 
-app.use(cors({origin:"*"}));
 //CONNECT DB
 mongoose.connect("mongodb+srv://trieu123vn:trieu123@cluster0.w1tifv5.mongodb.net/Movie?retryWrites=true&w=majority")
 .then(()=>{
@@ -31,6 +35,7 @@ app.use(bodyParseer.json({limit:"50mb"}))
 // app.use(cors());
 // app.use(morgan("common"));
 app.use(cookieParser());
+app.use(cors(corsOption));
 //ROUTE MOVIE
 app.use("/v1/movie",movieRoute);
 //ROUTE SCHEDULE
