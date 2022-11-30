@@ -1,5 +1,5 @@
 const {json} = require("body-parser")
-const {Seat} = require("../models/model")
+const {Seat,Room,Schedule} = require("../models/model")
 
 const seatController = {
     //ADD SEAT
@@ -18,7 +18,9 @@ const seatController = {
     getAllSeat: async(req , res) =>{
         res.setHeader('Access-Control-Allow-Origin', '*');
         try{
-            const seat = await Seat.find();
+            const schedule = await Schedule.findById(req.params.id);
+            const roomId = schedule.room;
+            const seat = await Seat.find({room:`${roomId}`});
             res.status(200).json(seat);
         }
         catch(err){
