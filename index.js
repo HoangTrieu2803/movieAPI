@@ -12,6 +12,7 @@ const roomRoute = require("./routes/room")
 const cinemaRoute = require("./routes/cinema")
 const seatRoute = require("./routes/seat")
 const userRoute = require("./routes/user")
+const bookingRoute = require("./routes/booking")
 const createError = require("http-errors")
 const {verifyAccessToken} = require("./validation/jwt")
 // dotenv.config();
@@ -47,7 +48,9 @@ app.use("/v1/cinema",cinemaRoute);
 //ROUTE SEAT
 app.use("/v1/seat" , seatRoute)
 //ROUTE USER
-app.use("/v1/user", userRoute)
+app.use("/v1/user", userRoute);
+//ROUTE BOOKING;
+app.use("/v1/booking",bookingRoute);
 app.listen(process.env.PORT ||8000, ()=>{
     console.log("Server is running")
 })

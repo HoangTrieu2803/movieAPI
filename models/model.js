@@ -106,7 +106,7 @@ const seatSchema = new mongoose.Schema({
   },
   listSeat:[
     {col:{type:String},price:{type:String},isSelect:{type:Boolean}}
-  ]
+  ],
 })
 //BOOKING
 const bookingSchema = new mongoose.Schema({
@@ -118,16 +118,10 @@ const bookingSchema = new mongoose.Schema({
     type:mongoose.Schema.Types.ObjectId,
     ref:"Schedule"
   },
-  seat:{
-    type:mongoose.Schema.Types.ObjectId,
-    ref:"Seat"
-  },
-  price:{
-    type:Number
-  },
-  seatStatus:{
-    type:Boolean
-  }
+  seat:[
+    {type:mongoose.Schema.Types.ObjectId,
+    ref:"Seat"}
+  ],
 })
 //USER
 const userSchema = new mongoose.Schema({
@@ -172,5 +166,6 @@ let Room = mongoose.model("Room", roomSchema);
 let Cinema = mongoose.model("Cinema", cinemaSchema);
 let Seat = mongoose.model("Seat", seatSchema);
 let User = mongoose.model("User", userSchema);
+let Booking = mongoose.model("Booking", bookingSchema);
 
-module.exports = {Movie,Schedule,Room,Cinema,Seat,User};
+module.exports = {Movie,Schedule,Room,Cinema,Seat,User,Booking};
