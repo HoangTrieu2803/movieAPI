@@ -66,19 +66,20 @@ const userController = {
             {
                 res.status(404).json("Sai mat khau")
             }
-            if(user && validPassword){
+            // if(user && validPassword){
                 
-                const accessToken= userController.signAccessToken(user);
-                const refreshToken= userController.signRefreshToken(user);
-                refreshTokens.push(refreshToken);
-                res.cookie("refreshToken",refreshToken,{
-                    httpOnly:true,
-                    secure:false,
-                    path:"/",
-                    sameSite:"strict",
-                })
-                res.status(200).json({user,accessToken})
-            }
+            //     const accessToken= userController.signAccessToken(user);
+            //     const refreshToken= userController.signRefreshToken(user);
+            //     refreshTokens.push(refreshToken);
+            //     res.cookie("refreshToken",refreshToken,{
+            //         httpOnly:true,
+            //         secure:false,
+            //         path:"/",
+            //         sameSite:"strict",
+            //     })
+            //     res.status(200).json({user,accessToken})
+            // }
+            res.status(200).json(user);
         }
         catch(err){
             res.status(500).json(err);
