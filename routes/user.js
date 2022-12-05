@@ -7,7 +7,7 @@ const middlewareController = require("../controllers/middlewareController");
 //REGISTER
 router.post("/register", userController.addUser);
 //GET ALL USER
-router.get("/",middlewareController.verifyToken,userController.getAllUser);
+router.get("/",userController.getAllUser);
 //LOGIN
 router.post("/login",userController.loginUser);
 //DELETE
@@ -16,7 +16,7 @@ router.delete("/delUser/:id",middlewareController.verifyAdminToken,userControlle
 //REFRESH
 router.post("/refresh",userController.refreshToken)
 //LOGOUT
-router.post("/logout",middlewareController.verifyToken,userController.logoutUser)
+router.post("/logout",userController.logoutUser)
 
 
 

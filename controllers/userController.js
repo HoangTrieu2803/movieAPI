@@ -66,6 +66,9 @@ const userController = {
             {
                 res.status(404).json("Sai mat khau")
             }
+            if(user && validPassword){
+                res.status(200).json(user);
+            }
             // if(user && validPassword){
                 
             //     const accessToken= userController.signAccessToken(user);
@@ -79,7 +82,7 @@ const userController = {
             //     })
             //     res.status(200).json({user,accessToken})
             // }
-            res.status(200).json(user);
+            
         }
         catch(err){
             res.status(500).json(err);
